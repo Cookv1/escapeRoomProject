@@ -41,28 +41,28 @@ async function processPath(player, path) {
             if (effectiveness === 'magic') {
                 outcome = `You use magic against the ${obstacle} and escape successfully!`;
             } else {
-                outcome = `Your magic has no effect against the ${obstacle}. ${deathMessage}`;
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
             }
             break;
         case 'Use sword':
             if (effectiveness === 'sword') {
                 outcome = `You wield your sword against the ${obstacle} and escape successfully!`;
             } else {
-                outcome = `Your sword is ineffective against the ${obstacle}. ${deathMessage}`;
+                outcome = `our action has no effect against the ${obstacle}. ${deathMessage}`;
             }
             break;
         case 'Use light of the elves':
             if (effectiveness === 'light of the elves') {
                 outcome = `You illuminate the darkness with the light of the elves, thwarting the ${obstacle} and escape successfully!`;
             } else {
-                outcome = `The light of the elves fails to deter the ${obstacle}. ${deathMessage}`;
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
             }
             break;
         case 'Use the One Ring':
             if (effectiveness === 'the One Ring') {
                 outcome = `You wear the One Ring, becoming invisible to the ${obstacle} and escape successfully!`;
             } else {
-                outcome = `The Nazgûl still sense you despite wearing the One Ring. ${deathMessage}`;
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
             }
             break;
             // potentially take out below
