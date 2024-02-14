@@ -35,7 +35,7 @@ async function processPath(player, path) {
     const action = await inquirerFunctions.chooseAction();
 
     let outcome;
-
+// all below needs changing
     switch (action) {
         case 'Use magic':
             if (effectiveness === 'magic') {
