@@ -32,49 +32,59 @@ async function processPath(player, path) {
             break;
     }
 
-    const action = await inquirerFunctions.chooseAction();
+    let gameOver = false;
 
-    let outcome;
-// all below needs changing
-    switch (action) {
-        case 'Use magic':
-            if (effectiveness === 'magic') {
-                outcome = `You use magic against the ${obstacle} and escape successfully!`;
-            } else {
-                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-            }
-            break;
-        case 'Use sword':
-            if (effectiveness === 'sword') {
-                outcome = `You wield your sword against the ${obstacle} and escape successfully!`;
-            } else {
-                outcome = `our action has no effect against the ${obstacle}. ${deathMessage}`;
-            }
-            break;
-        case 'Use light of the elves':
-            if (effectiveness === 'light of the elves') {
-                outcome = `You illuminate the darkness with the light of the elves, thwarting the ${obstacle} and escape successfully!`;
-            } else {
-                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-            }
-            break;
-        case 'Use the One Ring':
-            if (effectiveness === 'the One Ring') {
-                outcome = `You wear the One Ring, becoming invisible to the ${obstacle} and escape successfully!`;
-            } else {
-                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-            }
-            break;
-            // potentially take out below
-        case 'Sneak past': 
-            outcome = `You attempt to sneak past the ${obstacle}, but it senses you. ${deathMessage}`;
-            break;
-        default:
-            break;
+    while (!gameOver) {
+        const action = await inquirerFunctions.chooseAction();
+
+        let outcome;
+
+        switch (action) {
+            case 'Use magic':
+                if (effectiveness === 'magic') {
+                    outcome = `You use magic against the ${obstacle} and escape successfully!`;
+                    gameOver = true;
+                } else {
+                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                    gameOver = true;
+                }
+                break;
+            case 'Use sword':
+                if (effectiveness === 'sword') {
+                    outcome = `You wield your sword against the ${obstacle} and escape successfully!`;
+                    gameOver = true;
+                } else {
+                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                    gameOver = true;
+                }
+                break;
+            case 'Use light of the elves':
+                if (effectiveness === 'light of the elves') {
+                    outcome = `You illuminate the darkness with the light of the elves, thwarting the ${obstacle} and escape successfully!`;
+                    gameOver = true;
+                } else {
+                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                    gameOver = true;
+                }
+                break;
+            case 'Use the One Ring':
+                if (effectiveness === 'the One Ring') {
+                    outcome = `You wear the One Ring, becoming invisible to the ${obstacle} and escape successfully!`;
+                    gameOver = true;
+                } else {
+                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                    gameOver = true;
+                }
+                break;
+            default:
+                outcome = 'Invalid action chosen.';
+                break;
+        }
+
+        console.log(outcome);
     }
 
-    console.log(outcome || 'Invalid action chosen.');
-    return path;
+    return gameOver;
 }
 
 module.exports = {

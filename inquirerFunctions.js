@@ -45,11 +45,10 @@ async function chooseAction() {
         type: 'list',
         name: 'action',
         message: 'Choose your action:',
-        choices: ['Use magic', 'Use sword', 'Use light of the elves', 'Use the One Ring', 'Sneak past']
+        choices: ['Use magic', 'Use sword', 'Use light of the elves', 'Use the One Ring']
     });
     return action;
 }
-// maybe take out 'sneak past' 
 
 module.exports = {
     createPlayer,

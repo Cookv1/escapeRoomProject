@@ -6,15 +6,16 @@ async function startGame() {
 
     // Initialize game
     let player = await inquirerFunctions.createPlayer();
-    let path = await inquirerFunctions.choosePath();
+    let gameOver = false;
 
-    // Start game loop
-    while (!gameFunctions.isGameOver(path)) {
-        path = await gameFunctions.processPath(player, path);
+    while (!gameOver) {
+        let path = await inquirerFunctions.choosePath();
+        gameOver = await gameFunctions.processPath(player, path);
     }
 
     console.log("Game over!");
 }
 
 startGame();
+
 
