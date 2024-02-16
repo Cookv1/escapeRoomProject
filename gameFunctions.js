@@ -33,62 +33,53 @@ async function processPath(player, path) {
             break;
     }
 
-    console.log(`You encounter ${obstacle}!`);
+    console.log(`You encounter... ${obstacle}!`);
     console.log(`You shall not pass until you defeat the ${obstacle} with an effective move.`);
 
-    let gameOver = false;
+    const action = await inquirerFunctions.chooseAction();
 
-    while (!gameOver) {
-        const action = await inquirerFunctions.chooseAction();
+    let outcome;
 
-        let outcome;
-
-        switch (action) {
-            case 'Use magic':
-                if (effectiveness === 'magic') {
-                    outcome = `You use magic against the ${obstacle} and escape successfully!`;
-                    gameOver = true;
-                } else {
-                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-                    gameOver = true;
-                }
-                break;
-            case 'Use sword':
-                if (effectiveness === 'sword') {
-                    outcome = `You wield your sword against the ${obstacle} and escape successfully!`;
-                    gameOver = true;
-                } else {
-                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-                    gameOver = true;
-                }
-                break;
-            case 'Use light of the elves':
-                if (effectiveness === 'light of the elves') {
-                    outcome = `You illuminate the darkness with the light of the elves, thwarting the ${obstacle} and escape successfully!`;
-                    gameOver = true;
-                } else {
-                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-                    gameOver = true;
-                }
-                break;
-            case 'Use the One Ring':
-                if (effectiveness === 'the One Ring') {
-                    outcome = `You wear the One Ring, becoming invisible to the ${obstacle} and escape successfully!`;
-                    gameOver = true;
-                } else {
-                    outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
-                    gameOver = true;
-                }
-                break;
-            default:
-                outcome = 'Invalid action chosen.';
-                break;
-        }
-
-        console.log(outcome);
+    switch (action) {
+        case 'Use magic':
+            if (effectiveness === 'magic') {
+                outcome = `You use magic against the ${obstacle} and escape successfully!`;
+            } else {
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                return false; // Return false if wrong action is taken
+            }
+            break;
+        case 'Use sword':
+            if (effectiveness === 'sword') {
+                outcome = `You wield your sword against the ${obstacle} and escape successfully!`;
+            } else {
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                return false; // Return false if wrong action is taken
+            }
+            break;
+        case 'Use light of the elves':
+            if (effectiveness === 'light of the elves') {
+                outcome = `You illuminate the darkness with the light of the elves, thwarting the ${obstacle} and escape successfully!`;
+            } else {
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                return false; // Return false if wrong action is taken
+            }
+            break;
+        case 'Use the One Ring':
+            if (effectiveness === 'the One Ring') {
+                outcome = `You wear the One Ring, becoming invisible to the ${obstacle} and escape successfully!`;
+            } else {
+                outcome = `Your action has no effect against the ${obstacle}. ${deathMessage}`;
+                return false; // Return false if wrong action is taken
+            }
+            break;
+        default:
+            outcome = 'Invalid action chosen.';
+            break;
     }
 
-    return gameOver;
+    console.log(outcome);
+    return true; // Return true if the player uses the correct effective action
 }
 
 module.exports = {
