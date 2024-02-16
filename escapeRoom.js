@@ -1,3 +1,4 @@
+// escapeRoom.js
 const inquirerFunctions = require('./inquirerFunctions');
 const gameFunctions = require('./gameFunctions');
 
@@ -6,16 +7,21 @@ async function startGame() {
 
     // Initialize game
     let player = await inquirerFunctions.createPlayer();
-    let gameOver = false;
+    let pathsTaken = new Set(); // Keep track of paths taken
 
-    while (!gameOver) {
-        let path = await inquirerFunctions.choosePath();
-        gameOver = await gameFunctions.processPath(player, path);
+    // Paths array to ensure the player goes through every pathway
+    const paths = ['Through the mountains', 'Through the woodland', 'Down the rivers', 'Through the plains'];
+
+    for (let i = 0; i < paths.length; i++) {
+        const path = await inquirerFunctions.choosePath(paths, pathsTaken);
+        pathsTaken.add(path);
+        await gameFunctions.processPath(player, path);
     }
 
-    console.log("Game over!");
+    console.log("Congratulations! You've successfully escaped from Mordor!");
 }
 
 startGame();
+
 
 

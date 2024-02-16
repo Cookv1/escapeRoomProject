@@ -1,3 +1,4 @@
+// inquirerFunctions.js
 const inquirer = require('inquirer');
 const { Hobbit, Elven, Dwarve, Wizard } = require('./characters');
 
@@ -30,12 +31,13 @@ async function createPlayer() {
     }
 }
 
-async function choosePath() {
+async function choosePath(paths, pathsTaken) {
+    const availablePaths = paths.filter(path => !pathsTaken.has(path));
     const { path } = await inquirer.prompt({
         type: 'list',
         name: 'path',
         message: 'Choose your path:',
-        choices: ['Through the mountains', 'Through the woodland', 'Down the rivers', 'Through the plains']
+        choices: availablePaths
     });
     return path;
 }

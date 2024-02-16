@@ -1,3 +1,4 @@
+// gameFunctions.js
 const inquirerFunctions = require('./inquirerFunctions');
 
 async function processPath(player, path) {
@@ -31,6 +32,9 @@ async function processPath(player, path) {
         default:
             break;
     }
+
+    console.log(`You encounter ${obstacle}!`);
+    console.log(`You shall not pass until you defeat the ${obstacle} with an effective move.`);
 
     let gameOver = false;
 
